@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Strength Checker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-image: url("{{ url_for('static', filename='images/images.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .card {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+        h1 {
+            font-size: 22px;
+            color: #4a6b4d;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #4a6b4d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #385a3b;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .weak {
+            background-color: #ffe0e0;
+            color: #a10000;
+        }
+        .medium {
+            background-color: #fff3cd;
+            color: #8a6500;
+        }
+        .strong {
+            background-color: #d6f5d6;
+            color: #1a6b1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🔐 Password Strength Checker</h1>
+        <form method="POST">
+            <input type="text" name="password" placeholder="Enter a password" value="{{ password }}" autocomplete="off">
+            <button type="submit">Check Strength</button>
+        </form>
+
+        {% if result %}
+        <div class="result {{ css_class }}">
+            {{ result }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
